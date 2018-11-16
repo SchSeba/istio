@@ -38,6 +38,8 @@ data:
         - {{ "\"[[ annotation .ObjectMeta `traffic.sidecar.istio.io/includeInboundPorts` (includeInboundPorts .Spec.Containers) ]]\"" }}
         - "-d"
         - {{ "\"[[ excludeInboundPort (annotation .ObjectMeta `status.sidecar.istio.io/port` " }} {{ .Values.global.proxy.statusPort }} {{ ") (annotation .ObjectMeta `traffic.sidecar.istio.io/excludeInboundPorts` " }} "{{ .Values.global.proxy.excludeInboundPorts }}" {{ ") ]]\"" }}
+        - "-r"
+        - {{ "\"[[ annotation .ObjectMeta `traffic.sidecar.istio.io/internalInterfaces` ]]\"" }}
         imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         resources:
           requests:
